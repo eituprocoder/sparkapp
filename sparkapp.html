@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0d18">
+  <meta name="description" content="Sparkapp: tienda gratuita de APKs creadas por Eituprocoder.">
+  <title>Sparkapp — APKs de Eituprocoder</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090c16;--panel:#111729;--panel2:#151d32;--text:#f3f5ff;--muted:#a0aac4;--line:#29324d;--lime:#b9ff54;--cyan:#65e6ff;--purple:#a78bfa;--danger:#ff8585;--shadow:0 18px 50px #0005}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 10% 0%,#28305c66,transparent 40%),radial-gradient(ellipse at 100% 10%,#144b5060,transparent 35%),var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .wrap{width:min(1120px,100% - 32px);margin:0 auto}
+    header{padding:22px 0;border-bottom:1px solid #ffffff12;backdrop-filter:blur(16px)}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-weight:900;letter-spacing:-.04em;font-size:1.4rem}
+    .logo{display:grid;place-items:center;width:43px;height:43px;border-radius:15px;background:linear-gradient(135deg,var(--lime),var(--cyan));color:#101629;box-shadow:0 0 30px #b9ff5433;font-size:1.5rem}
+    .brand small{display:block;margin-top:1px;color:var(--muted);font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+    .github-link,.ghost-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:13px;text-decoration:none;color:#e4e9ff;background:#ffffff05;font-weight:750;font-size:.9rem;transition:.2s}
+    .github-link:hover,.ghost-btn:hover{border-color:#8291b9;background:#ffffff0a;transform:translateY(-1px)}
+    main{padding:30px 0 54px}
+    .hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(200px,.7fr);align-items:center;gap:24px;padding:clamp(24px,5vw,54px);border:1px solid #8395bd35;border-radius:30px;background:linear-gradient(115deg,#18223aee,#11172bea 64%,#172d34dd);box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;right:-65px;top:-100px;width:300px;height:300px;border-radius:50%;border:1px solid #b9ff5433;box-shadow:0 0 0 28px #b9ff5408,0 0 0 58px #65e6ff08;pointer-events:none}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font-size:.78rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase}
+    .pulse{height:8px;width:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 12px var(--lime)}
+    h1{margin:15px 0 13px;font-size:clamp(2.5rem,6.8vw,5rem);line-height:.98;letter-spacing:-.075em;max-width:680px}
+    h1 span{background:linear-gradient(90deg,var(--lime),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero p{max-width:590px;color:#bac4de;line-height:1.75;font-size:1.02rem;margin:0 0 24px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px}
+    .primary-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;background:var(--lime);color:#101629;border:0;border-radius:14px;font-weight:900;text-decoration:none;box-shadow:0 8px 26px #b9ff5420;transition:.2s}
+    .primary-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px #b9ff5432}
+    .hero-art{position:relative;display:grid;place-items:center;min-height:210px}
+    .app-orbit{width:min(240px,80%);aspect-ratio:1;border-radius:35%;border:1px solid #b9ff5440;display:grid;place-items:center;transform:rotate(-8deg);background:linear-gradient(145deg,#b9ff5412,#65e6ff0c);box-shadow:inset 0 0 60px #65e6ff08,0 0 65px #65e6ff0b}
+    .app-orbit .big-bolt{transform:rotate(8deg);font-size:clamp(5rem,10vw,7rem);filter:drop-shadow(0 0 24px #b9ff5433)}
+    .float-chip{position:absolute;padding:8px 11px;border:1px solid #91a2c044;border-radius:12px;background:#111a2be8;color:#dce5ff;font-size:.75rem;font-weight:800;box-shadow:0 8px 25px #0003}
+    .chip-one{top:23px;right:0}.chip-two{bottom:22px;left:0;color:var(--lime)}
+    .toolbar{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:36px 0 20px;flex-wrap:wrap}
+    h2{font-size:clamp(1.65rem,4vw,2.25rem);letter-spacing:-.05em;margin:0}
+    .subtext{margin:7px 0 0;color:var(--muted);font-size:.93rem;line-height:1.6}
+    .tools{display:flex;align-items:center;gap:9px;flex-wrap:wrap;min-width:min(100%,360px)}
+    .search{flex:1;min-width:190px;position:relative}
+    .search span{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted)}
+    input{width:100%;outline:0;border:1px solid var(--line);border-radius:13px;background:#0e1424;color:var(--text);padding:12px 13px 12px 39px;font:inherit;font-size:.92rem}
+    input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #65e6ff14}
+    .ghost-btn{cursor:pointer;font-family:inherit;white-space:nowrap}
+    .status{display:flex;align-items:center;gap:8px;min-height:24px;margin:6px 0 17px;color:var(--muted);font-size:.84rem}
+    .status-dot{width:7px;height:7px;flex:none;border-radius:50%;background:var(--cyan)}
+    .status.error{color:#ffaaaa}.status.error .status-dot{background:var(--danger)}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .app-card{min-width:0;display:flex;flex-direction:column;gap:16px;padding:19px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(150deg,#151d30f2,#101626f2);box-shadow:0 12px 35px #0002;transition:transform .2s,border-color .2s}
+    .app-card:hover{transform:translateY(-3px);border-color:#647494}
+    .card-top{display:flex;align-items:flex-start;gap:12px}
+    .app-icon{display:grid;place-items:center;flex:none;width:58px;height:58px;border-radius:18px;background:linear-gradient(145deg,#b9ff5420,#65e6ff17);border:1px solid #b9ff5430;font-size:1.75rem}
+    .app-name{margin:2px 0 5px;overflow-wrap:anywhere;font-size:1.1rem;font-weight:900;letter-spacing:-.03em}
+    .tag{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:8px;background:#b9ff5415;color:var(--lime);font-size:.7rem;font-weight:850;max-width:100%;overflow-wrap:anywhere}
+    .app-desc{margin:0;color:#aab5d0;font-size:.89rem;line-height:1.6;overflow-wrap:anywhere}
+    .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+    .meta span{font-size:.75rem;color:#b4bfd9;background:#ffffff07;border:1px solid #ffffff0b;padding:6px 8px;border-radius:9px}
+    .card-actions{display:grid;grid-template-columns:1fr auto;gap:9px}
+    .download-btn{display:flex;justify-content:center;align-items:center;gap:8px;background:var(--lime);color:#101629;border:0;border-radius:12px;text-decoration:none;font-size:.89rem;font-weight:900;padding:12px;min-width:0}
+    .download-btn:hover{filter:brightness(1.06)}
+    .release-btn{display:grid;place-items:center;border:1px solid var(--line);border-radius:12px;padding:0 13px;color:#dfe7ff;text-decoration:none;background:#ffffff04;font-size:.85rem}
+    .release-btn:hover{background:#ffffff0b}
+    .empty{grid-column:1/-1;text-align:center;padding:45px 22px;border:1px dashed #46516e;border-radius:23px;background:#ffffff03}
+    .empty .empty-icon{font-size:2.4rem}.empty h3{margin:12px 0 7px;font-size:1.25rem}.empty p{margin:0 auto 18px;max-width:460px;color:var(--muted);line-height:1.65}
+    .info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px}
+    .info-box{padding:17px;border:1px solid #ffffff12;border-radius:18px;background:#ffffff04}
+    .info-box strong{display:block;margin-bottom:5px;font-size:.93rem}.info-box span{color:var(--muted);font-size:.81rem;line-height:1.55}
+    .note{margin:20px 0 0;padding:15px 17px;border-left:3px solid var(--purple);border-radius:0 12px 12px 0;background:#a78bfa0a;color:#b8c2dd;font-size:.85rem;line-height:1.65}
+    footer{padding:23px 0 32px;border-top:1px solid #ffffff12;color:var(--muted);font-size:.83rem}
+    .foot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}.foot a{color:#d9e4ff;text-decoration:none}.foot a:hover{text-decoration:underline}
+    .hidden{display:none!important}
+    @media(max-width:850px){.hero{grid-template-columns:1fr 230px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){.wrap{width:min(100% - 22px,1120px)}header{padding:15px 0}.github-link{font-size:.8rem;padding:9px 10px}.hero{grid-template-columns:1fr;padding:25px 21px;border-radius:23px}.hero-art{min-height:160px}.app-orbit{width:155px}.float-chip{font-size:.7rem}.chip-one{right:8%}.chip-two{left:8%}.grid{grid-template-columns:1fr}.toolbar{margin-top:29px}.tools{width:100%;min-width:0}.info-row{grid-template-columns:1fr}.card-actions{grid-template-columns:1fr auto}h1{font-size:3.25rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap topbar">
+      <a class="brand" href="#inicio" aria-label="Sparkapp, inicio">
+        <span class="logo" aria-hidden="true">ϟ</span>
+        <span>Sparkapp<small>by Eituprocoder</small></span>
+      </a>
+      <a class="github-link" href="https://github.com/eituprocoder/sparkapp/releases" target="_blank" rel="noopener noreferrer">⌘ <span>GitHub Releases ↗</span></a>
+    </div>
+  </header>
+
+  <main class="wrap" id="inicio">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Tu espacio de apps</div>
+        <h1 id="hero-title">Tus apps.<br><span>Tu chispa.</span></h1>
+        <p>Bienvenido a Sparkapp, la tienda de aplicaciones creadas por Eituprocoder. Explora las APK disponibles y descárgalas gratis directamente desde las releases oficiales de GitHub.</p>
+        <div class="actions">
+          <a class="primary-btn" href="#apps">⚡ Explorar APKs <span aria-hidden="true">↓</span></a>
+          <a class="ghost-btn" href="https://github.com/eituprocoder/sparkapp/releases/tag/Sparkapp" target="_blank" rel="noopener noreferrer">Ver release inicial ↗</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="app-orbit"><span class="big-bolt">ϟ</span></div>
+        <span class="float-chip chip-one">✦ GRATIS</span>
+        <span class="float-chip chip-two">ANDROID · APK</span>
+      </div>
+    </section>
+
+    <section id="apps" aria-labelledby="apps-title">
+      <div class="toolbar">
+        <div>
+          <h2 id="apps-title">La biblioteca</h2>
+          <p class="subtext">Las APK se cargan automáticamente desde las releases de tu repositorio.</p>
+        </div>
+        <div class="tools">
+          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar una app…" aria-label="Buscar APK por nombre"></label>
+          <button type="button" class="ghost-btn" id="refresh">↻ Actualizar</button>
+        </div>
+      </div>
+      <div class="status" id="status" role="status" aria-live="polite"><span class="status-dot"></span><span>Conectando con GitHub…</span></div>
+      <div class="grid" id="app-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="info-row" aria-label="Información de Sparkapp">
+      <div class="info-box"><strong>⚡ Descargas directas</strong><span>Los botones llevan al archivo APK adjunto a la release de cada aplicación.</span></div>
+      <div class="info-box"><strong>🔄 Se actualiza sola</strong><span>Cuando publiques nuevas APK en GitHub Releases, aparecerán al abrir o actualizar Sparkapp.</span></div>
+      <div class="info-box"><strong>🆓 Sin backend de pago</strong><span>Es un solo HTML que utiliza la API pública de GitHub. No necesita una base de datos propia.</span></div>
+    </section>
+    <p class="note"><strong>Consejo de publicación:</strong> sube cada archivo terminado en <code>.apk</code> a la sección <em>Assets</em> de una release pública de este repositorio. La tienda muestra automáticamente las APK que encuentre, junto con su versión y tamaño. Solo instala apps que reconozcas y que hayas obtenido de una fuente confiable.</p>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span>© <span id="year"></span> Sparkapp · Creado por Eituprocoder</span>
+      <span><a href="https://github.com/eituprocoder/sparkapp" target="_blank" rel="noopener noreferrer">Repositorio</a> · <a href="https://github.com/eituprocoder/sparkapp/releases" target="_blank" rel="noopener noreferrer">Todas las releases</a></span>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+      const OWNER = 'eituprocoder';
+      const REPO = 'sparkapp';
+      const API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/releases?per_page=100`;
+      const RELEASES_URL = `https://github.com/${OWNER}/${REPO}/releases`;
+      const grid = document.getElementById('app-grid');
+      const status = document.getElementById('status');
+      const searchInput = document.getElementById('search');
+      const refreshButton = document.getElementById('refresh');
+      let apps = [];
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function setStatus(message, isError = false) {
+        status.classList.toggle('error', isError);
+        status.replaceChildren();
+        const dot = document.createElement('span');
+        dot.className = 'status-dot';
+        const text = document.createElement('span');
+        text.textContent = message;
+        status.append(dot, text);
+      }
+
+      function escapeText(value) {
+        return String(value ?? '');
+      }
+
+      function formatSize(bytes) {
+        if (!Number.isFinite(bytes) || bytes <= 0) return 'Tamaño n/d';
+        const units = ['B', 'KB', 'MB', 'GB'];
+        let size = bytes, unit = 0;
+        while (size >= 1024 && unit < units.length - 1) { size /= 1024; unit++; }
+        return `${size.toLocaleString('es-ES', { maximumFractionDigits: unit ? 1 : 0 })} ${units[unit]}`;
+      }
+
+      function formatDate(value) {
+        if (!value) return 'Fecha n/d';
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return 'Fecha n/d';
+        return new Intl.DateTimeFormat('es', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+      }
+
+      function niceName(filename) {
+        return filename.replace(/\.apk$/i, '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim() || filename;
+      }
+
+      function makeElement(tag, className, content) {
+        const el = document.createElement(tag);
+        if (className) el.className = className;
+        if (content !== undefined) el.textContent = content;
+        return el;
+      }
+
+      function safeHttpUrl(value) {
+        try {
+          const url = new URL(value);
+          return url.protocol === 'https:' ? url.href : RELEASES_URL;
+        } catch (_) { return RELEASES_URL; }
+      }
+
+      function createCard(app) {
+        const card = makeElement('article', 'app-card');
+        const top = makeElement('div', 'card-top');
+        const icon = makeElement('div', 'app-icon', 'ϟ');
+        icon.setAttribute('aria-hidden', 'true');
+        const titleArea = makeElement('div', 'title-area');
+        titleArea.style.minWidth = '0';
+        titleArea.append(makeElement('h3', 'app-name', app.name));
+        titleArea.append(makeElement('span', 'tag', `⬡ ${app.tag}`));
+        top.append(icon, titleArea);
+        card.append(top);
+
+        const description = app.description || `Aplicación publicada por Eituprocoder. Archivo: ${app.filename}`;
+        card.append(makeElement('p', 'app-desc', description));
+
+        const meta = makeElement('div', 'meta');
+        meta.append(makeElement('span', '', `⬇ ${app.downloads.toLocaleString('es-ES')} descargas`));
+        meta.append(makeElement('span', '', formatSize(app.size)));
+        meta.append(makeElement('span', '', formatDate(app.date)));
+        card.append(meta);
+
+        const actions = makeElement('div', 'card-actions');
+        const download = makeElement('a', 'download-btn', '↓ Descargar APK');
+        download.href = safeHttpUrl(app.url);
+        download.target = '_blank';
+        download.rel = 'noopener noreferrer';
+        download.setAttribute('aria-label', `Descargar ${app.filename}`);
+        const release = makeElement('a', 'release-btn', 'Release ↗');
+        release.href = safeHttpUrl(app.releaseUrl);
+        release.target = '_blank';
+        release.rel = 'noopener noreferrer';
+        release.setAttribute('aria-label', `Ver release de ${app.name}`);
+        actions.append(download, release);
+        card.append(actions);
+        return card;
+      }
+
+      function render() {
+        const query = searchInput.value.trim().toLocaleLowerCase('es');
+        const shown = apps.filter(app => [app.name, app.filename, app.tag, app.description].join(' ').toLocaleLowerCase('es').includes(query));
+        grid.replaceChildren();
+
+        if (!shown.length) {
+          const empty = makeElement('div', 'empty');
+          empty.append(makeElement('div', 'empty-icon', apps.length ? '🔎' : '📦'));
+          empty.append(makeElement('h3', '', apps.length ? 'No encontramos esa app' : 'Todavía no hay APK visibles'));
+          const paragraph = makeElement('p', '', apps.length ? 'Prueba con otro nombre o borra la búsqueda para ver todas las aplicaciones.' : 'Cuando subas archivos .apk a los Assets de una release pública, aparecerán aquí automáticamente. También puedes revisar las releases directamente en GitHub.');
+          empty.append(paragraph);
+          const link = makeElement('a', 'primary-btn', 'Abrir GitHub Releases ↗');
+          link.href = RELEASES_URL;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          empty.append(link);
+          grid.append(empty);
+          return;
+        }
+        const fragment = document.createDocumentFragment();
+        shown.forEach(app => fragment.append(createCard(app)));
+        grid.append(fragment);
+      }
+
+      async function loadReleases() {
+        refreshButton.disabled = true;
+        refreshButton.textContent = '↻ Cargando…';
+        setStatus('Buscando APK en las releases públicas de GitHub…');
+        try {
+          const response = await fetch(API_URL, {
+            headers: { 'Accept': 'application/vnd.github+json' },
+            cache: 'no-store'
+          });
+          if (!response.ok) {
+            if (response.status === 403 || response.status === 429) throw new Error('GitHub limitó temporalmente las consultas. Espera un poco o abre las releases directamente.');
+            if (response.status === 404) throw new Error('No se encontró el repositorio o no es público. Revisa la configuración de GitHub.');
+            throw new Error(`GitHub respondió con el código ${response.status}.`);
+          }
+          const releases = await response.json();
+          const discovered = [];
+          for (const release of releases) {
+            if (release.draft) continue;
+            const assets = Array.isArray(release.assets) ? release.assets : [];
+            for (const asset of assets) {
+              if (!asset.name || !/\.apk$/i.test(asset.name) || asset.state === 'starter') continue;
+              discovered.push({
+                name: niceName(asset.name),
+                filename: escapeText(asset.name),
+                tag: escapeText(release.name || release.tag_name || 'Release'),
+                description: escapeText(release.body || '').replace(/\s+/g, ' ').trim().slice(0, 240),
+                url: asset.browser_download_url,
+                releaseUrl: release.html_url || RELEASES_URL,
+                size: Number(asset.size) || 0,
+                downloads: Number(asset.download_count) || 0,
+                date: asset.updated_at || release.published_at || release.created_at,
+                order: new Date(release.published_at || release.created_at || 0).getTime()
+              });
+            }
+          }
+          discovered.sort((a, b) => b.order - a.order || a.name.localeCompare(b.name, 'es'));
+          apps = discovered;
+          render();
+          const count = apps.length;
+          setStatus(count ? `Listo: ${count} ${count === 1 ? 'APK encontrada' : 'APKs encontradas'} en las releases del repositorio.` : 'Conexión correcta: todavía no se detectaron archivos .apk en las releases públicas.');
+        } catch (error) {
+          apps = [];
+          render();
+          setStatus(`${error.message || 'No se pudieron cargar las APK.'} Comprueba tu conexión y vuelve a intentar.`, true);
+        } finally {
+          refreshButton.disabled = false;
+          refreshButton.textContent = '↻ Actualizar';
+        }
+      }
+
+      searchInput.addEventListener('input', render);
+      refreshButton.addEventListener('click', loadReleases);
+      loadReleases();
+    })();
+  </script>
+</body>
+</html>
